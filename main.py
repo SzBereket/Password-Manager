@@ -30,6 +30,7 @@ while True:
              print("hi")
              if mycol.find["Title"]==titlename1:
               print(mycol.find) 
+              print("what happend")
     elif int(selection1) ==2:
         print("are u sureeee ")
     
