@@ -10,12 +10,16 @@ import pymongo
 myclient = pymongo.MongoClient("mongodb+srv://szb123:szb123@cluster0.ykeob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 mydb = myclient["mydatabase"]
 mycol = mydb["Accounts"]
+changedata = 3
+myquery = {"ID" : int(changedata)}    
+newvalues = { "$set": { "Password": "sabrisifredegistirmedeneme1" } }
+print("Successful")
 # x = mycol.find_one()
 # mycol.find().sort("ID", -1)
-list1=[]
-for x in mycol.find():
-	list1.append(x['ID'])
-print(max(list1))
+# list1=[]
+# for x in mycol.find():
+# 	list1.append(x['ID'])
+# print(max(list1))
 #   print(x['ID'])
 
 

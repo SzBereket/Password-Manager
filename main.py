@@ -88,8 +88,16 @@ while True:
                 c = input("What do you want to update\n1.Title\n2.Nickname\n3.Password\n:")
                 if int(c)==1:
                     newtitle2=input("Write New Title:\n")
+                    myquery = {"ID" : int(changedata)}    
+                    newvalues = { "$set": { "Title": newtitle2 } }
+                    mycol.update_one(myquery, newvalues)
+                    print("Successful")
                 elif int(c)==2: 
                     newnickname2 = input("Write New Nickname")
+                    myquery = {"ID" : int(changedata)}    
+                    newvalues = { "$set": { "Nickname": newnickname2 } }
+                    mycol.update_one(myquery, newvalues)
+                    print("Successful")
                 elif int(c) ==3:
                     newpswrdchoice=input("1.Automatically generate password.\n2.Write manual password:\n")
                     if int(newpswrdchoice)==1:
@@ -100,12 +108,30 @@ while True:
                         if int(savechoice2) == 1:
                             print("hello world")##data değişecek
                             myquery = {"ID" : int(changedata)}    
-                            newvalues = { "$set": { "address": "Canyon 123" } }
+                            newvalues = { "$set": { "Password": fake.password() } }
+                            mycol.update_one(myquery, newvalues)
+                            print("Successful")
+                    elif int(newpswrdchoice)==2:
+                        newpswrd2=input("Write your New Password: \n")
+                        myquery = {"ID" : int(changedata)}    
+                        newvalues = { "$set": { "Password": newpswrd2 } }
+                        mycol.update_one(myquery, newvalues)
+                        print("Successful")
+
                 else:
                     print("Wrong Number")
     
     elif int(selection1) ==5:
-        print("are u sureeee ")
-    
+        for x in mycol.find():
+                print(str(x['ID'])+" "+x['Title']+" "+x['Password'])
+        changedata = input("Select Number:\n ")
+        for a in mycol.find():
+            if a['ID'] == int(changedata):
+                z = input("Are you sure you want to delete this Account?\n1.Yes\n2.No: \n")
+                if int(z)==1:
+                    myquery = {"ID" : int(changedata)}
+                    mycol.delete_one(myquery)
+                    print("Successful")
+                
     else:
         print("Wrong Choice")
