@@ -3,16 +3,12 @@ import random
 import string
 from faker import Faker
 import time
-myclient = pymongo.MongoClient("mongodb+srv://szb123:szb123@cluster0.ykeob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+myclient = pymongo.MongoClient("MONGODB CONNECTION NEED IN HERE")
 mydb = myclient["mydatabase"]
 mycol = mydb["Accounts"]
 
-# mydict = { "ID": "1","Title": "Twitter", "Nickname": "sabrideneme123", "Password": "sifrem" }
-
-# mycol.insert_one(mydict)
 print("          Welcome        ")
 print("***************************")
-# print("What You Wanna Do?\n***************************\n1.See Your Accounts Informations\n2.Create New Account\n3.Add New Accounts\n4.Change Your Accounts Information\n5.Remove Your Accounts\n9.Leave The Program\n***************************")
 
 while True:
     time.sleep(3)
@@ -32,7 +28,7 @@ while True:
             print("Write title name:")
             titlename1=input()
             for x in mycol.find():
-                # print(x['Title']) 
+                
                 if x['Title'] == titlename1:
                     print(x['Title']+"  "+x['Password'])
     elif int(selection1) ==2:
@@ -106,7 +102,7 @@ while True:
                         time.sleep(5)
                         savechoice2 = input("Do you want me to save this data?\n 1.Yes \n 2.No:\n")
                         if int(savechoice2) == 1:
-                            print("hello world")##data değişecek
+                            print("hello world")
                             myquery = {"ID" : int(changedata)}    
                             newvalues = { "$set": { "Password": fake.password() } }
                             mycol.update_one(myquery, newvalues)
