@@ -34,20 +34,24 @@ while True:
                 if x['Title'] == titlename1:
                     print(x['Title']+"  "+x['Password'])
     elif int(selection1) ==2:
+        list1 =[]
+        for x in mycol.find():
+            list1.append(x['ID'])
+        newid = int(max(list1))+1
         print("Write the new account Title:")
         newtitle = input()
         print("Write the new account Nickname:")
-        newnickname:input()
+        newnickname1 = input()
         print("1.Automatically generate password.\n2.Write manual password")
         passchoice=input()
         if int(passchoice) == 1:
             fake = Faker()
             print(fake.password())
             time.sleep(5)
-            savechoice1 = input("Do you want me to save this data?\n 1.Yes \n 2.No")
+            savechoice1 = input("Do you want me to save this data?\n 1.Yes \n 2.No\n")
             if int(savechoice1)== 1:
-                x= mycol.find.last #SON ID'yi bulup onu id kısmına yazdıracaksın unutma
-                mydict = { "ID": "1","Title": newtitle, "Nickname": newnickname, "Password": fake.password() }
+                
+                mydict = { "ID": newid ,"Title": newtitle , "Nickname": newnickname1 , "Password": fake.password() }
                 mycol.insert_one(mydict)
     
     elif int(selection1) ==3:
