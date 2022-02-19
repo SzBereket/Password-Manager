@@ -8,7 +8,7 @@ mydb = myclient["mydatabase"]
 mycol = mydb["Accounts"]
 
 print("          Welcome        ")
-print("***************************")
+print("****************************")
 
 while True:
     time.sleep(3)
