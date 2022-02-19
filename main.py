@@ -1,5 +1,8 @@
 import pymongo
-
+import random
+import string
+from faker import Faker
+import time
 myclient = pymongo.MongoClient("mongodb+srv://szb123:szb123@cluster0.ykeob.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 mydb = myclient["mydatabase"]
 mycol = mydb["Accounts"]
@@ -22,17 +25,30 @@ while True:
         see1 = input()
         if int(see1) == 1 : 
             for x in mycol.find():
-                print(x)
+                print(x['Title']+" "+x['Password'])
         elif int(see1) ==2: 
             print("Write title name:")
-            titlename1 = input()
-            for i in mycol.find:
-             print("hi")
-             if mycol.find["Title"]==titlename1:
-              print(mycol.find) 
-              print("what happend")
+            titlename1=input()
+            for x in mycol.find():
+                # print(x['Title']) 
+                if x['Title'] == titlename1:
+                    print(x['Title']+"  "+x['Password'])
     elif int(selection1) ==2:
-        print("are u sureeee ")
+        print("Write the new account Title:")
+        newtitle = input()
+        print("Write the new account Nickname:")
+        newnickname:input()
+        print("1.Automatically generate password.\n2.Write manual password")
+        passchoice=input()
+        if int(passchoice) == 1:
+            fake = Faker()
+            print(fake.password())
+            time.sleep(5)
+            savechoice1 = input("Do you want me to save this data?\n 1.Yes \n 2.No")
+            if int(savechoice1)== 1:
+                x= mycol.find.last #SON ID'yi bulup onu id kısmına yazdıracaksın unutma
+                mydict = { "ID": "1","Title": newtitle, "Nickname": newnickname, "Password": fake.password() }
+                mycol.insert_one(mydict)
     
     elif int(selection1) ==3:
         print("are u sureeee ")
